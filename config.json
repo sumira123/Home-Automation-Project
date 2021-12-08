@@ -1,0 +1,69 @@
+{
+    "bridge": {
+        "name": "Homebridge 311C",
+        "username": "0E:7E:39:CC:31:1C",
+        "port": 51514,
+        "pin": "316-83-519"
+    },
+    "accessories": [
+        {
+            "accessory": "GPIODevice",
+            "name": "Gate",
+            "type": "GarageDoorOpener",
+            "pin": 2,
+            "openingDuration": 10,
+            "closingDuration": 10,
+            "inverted": true
+        },
+        {
+            "accessory": "GPIODevice",
+            "name": "GateLight",
+            "type": "Lightbulb",
+            "pin": 3,
+            "inverted": true,
+            "reversed": true,
+            "activeLow": false
+        },
+        {
+            "accessory": "GPIODevice",
+            "name": "Living Room Light 01",
+            "type": "Lightbulb",
+            "pin": 27,
+            "inverted": true
+        },
+        {
+            "accessory": "GPIODevice",
+            "name": "Living Room Light 02",
+            "type": "Lightbulb",
+            "pin": 22,
+            "inverted": true
+        }
+    ],
+    "platforms": [
+        {
+            "name": "Config",
+            "port": 8581,
+            "auth": "form",
+            "theme": "dark-mode-blue",
+            "tempUnits": "c",
+            "lang": "auto",
+            "platform": "config"
+        },
+        {
+            "name": "Camera FFmpeg",
+            "cameras": [
+                {
+                    "name": "Living Room Camera",
+                    "videoConfig": {
+                        "source": "-i rtsp://admin:0770599350@192.168.8.203/h264_hd.sdp",
+                        "maxStreams": 2,
+                        "maxWidth": 1280,
+                        "maxHeight": 720,
+                        "maxFPS": 10
+                    }
+                }
+            ],
+            "platform": "Camera-ffmpeg"
+        }
+    ]
+}
